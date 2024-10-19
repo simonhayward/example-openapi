@@ -1,0 +1,38 @@
+openapi: "3.0.3"
+info:
+  version: 0.0.1
+  title: server
+paths:
+  /user/{id}:
+    get:
+      summary: Get a user
+      operationId: getUserById
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: User uuid
+      tags: []
+      responses:
+        200:
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          content: {}
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique user identifier
